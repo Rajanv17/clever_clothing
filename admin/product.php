@@ -74,7 +74,8 @@ include ('include/nav.php');
 											</div>
 											<div class="card-footer bg-light col-md-12 text-center">
 												<input type="hidden" id="process" name="process" value="addProductData" />
-												<input type="hidden" id="hCatId" name="hCatId" />
+												<input type="hidden" id="proId" name="proId" />
+												<input type="hidden" id="hproImg" name="hproImg" />
 												<input type="submit" class="btn btn-primary" value="Submit">
 											</div>
 										</div>

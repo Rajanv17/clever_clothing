@@ -126,7 +126,7 @@
         }
     }
     var id = decodeURI(getParameter('id'));
-    let getProduct = function(start,Limit, cName){
+    let getProduct = function(){
         $.ajax({
             url : "fetchFronts.php",
             method : "POST",

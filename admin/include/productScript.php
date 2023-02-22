@@ -21,14 +21,15 @@
 				dataType : "json",
 			},
 			"columns": [
-			{ "title": "Product", "data": 0},
-			{ "title": "Product Description", "data": 1},
-			{ "title": "Product Price", "data": 2},
-			{ "title": "Product Image", "data": 3},
-			{ "title": "Action", "data": 4},
+			{ "title": "Category", "data": 0},
+			{ "title": "Product", "data": 1},
+			{ "title": "Product Description", "data": 2},
+			{ "title": "Product Price", "data": 3},
+			{ "title": "Product Image", "data": 4},
+			{ "title": "Action", "data": 5},
 			],
 			'columnDefs': [ {
-					'targets': [4], // column index (start from 0)
+					'targets': [5], // column index (start from 0)
 					'orderable': false, // set orderable false for selected columns
 
 				}],
@@ -79,7 +80,7 @@
 				success : function(data){
 					$('#loading').hide();
 					if(data.code == 200){
-						setCatgoryData(data);
+						setCatgoryData(data.data);
 					}
 					else{
 						toastDisplay(data);
@@ -93,10 +94,84 @@
 			.remove()
 			.end()
 			.append('<option class="dropdown" value="">Select Category</option>')
-			$.each(data.data, function(index, val) {
+			$.each(data, function(index, val) {
 				$('#selCat').append($("<option></option>").attr("value", val.id).text(val.name));
 			});
 		}
 		getCategory();
+$(document).on('click', '.deactive', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	var id = $(this).attr('id');
+	var type = "D";
+	$('#loading').show();
+	$.ajax({
+		url : "include/basicFunctionality.inc.php",
+		method : "POST",
+		data : {functionality : "productManage", id : id, type : type},
+		dataType : "json",
+		success : function(data) {
+			toastDisplay(data);
+			$('#loading').hide();
+			if (data.code == 200) {
+				$('#viewProductData').DataTable().ajax.reload();
+			}
+		}
 	});
-	</script>
+
+});
+$(document).on('click', '.actived', function(event) {
+	event.preventDefault();
+	/* Act on the event */
+	var id = $(this).attr('id');
+	var type = "A";
+	$('#loading').show();
+	$.ajax({
+		url : "include/basicFunctionality.inc.php",
+		method : "POST",
+		data : {functionality : "productManage", id : id, type : type},
+		dataType : "json",
+		success : function(data) {
+			toastDisplay(data);
+			$('#loading').hide();
+			if (data.code == 200) {
+				$('#viewProductData').DataTable().ajax.reload();
+			}
+		}
+	});
+});
+$(document).on('click', '.edit', function(event) {
+        event.preventDefault();
+        /* Act on the event */
+        $("#loading").show();
+        var aId = $(this).attr('id');
+        $.ajax({
+            url : "include/getData.php",
+            method : "POST",
+            data: {getData : "getProductData", id : aId},
+            dataType : "json",
+            success : function(data){
+                $('#loading').hide();
+                if(data.code == 200){
+                    $('#selCat').val(data.data.cId);
+                    $('#productName').val(data.data.name);
+                    $('#productDesc').val(data.data.desc);
+                    $('#productPrice').val(data.data.price);
+                    $('#hproImg').val(data.data.img);
+                    $('#proId').val(aId);
+                    changeclass(0);
+                }
+                else{
+                    toastDisplay(data);
+                }
+            }
+        });
+    });
+    function changeclass(number){
+        number == 0 ? $('#navTabs a[href="#addProduct"]').tab('show') : $('#navTabs a[href="#viewProduct"]').tab('show');
+        number == 0 ? $('#navTabs a[href="#addProduct"]').text("Update Product") : $('#navTabs a[href="#addProduct"]').text("Add Product");
+        number == 0 ? $('.submit').text("Update") : $('.submit').text("Submit");
+        number == 0 ? $('#process').val("updateProductData") : $('#process').val("addProductData");
+    }
+});
+</script>

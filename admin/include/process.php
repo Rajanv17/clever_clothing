@@ -36,8 +36,6 @@ if (session_status() == PHP_SESSION_NONE){
 				$data = $SaltedData -> fetch();
 				$prefix = $data['cc_prefix'];
 				$suffix = $data['cc_suffix'];
-				$_SESSION['ccprefix'] = $data['cc_prefix'];
-				$_SESSION['ccsuffix'] = $data['cc_suffix'];
 			}
 			catch(PDOException $e) {
 				$response['code'] = 100;
@@ -108,8 +106,7 @@ if (session_status() == PHP_SESSION_NONE){
 									$_SESSION['ccuser'] = $finalData['u_name'];
 									$_SESSION['ccuserId'] = $finalData['u_id'];
 									$_SESSION['ccuserContact'] = $finalData['u_number'];
-									$_SESSION['ccloginTimeStamp'] = time();
-									$_SESSION['ccpageRights'] = getPages(['ut_id']);
+									$_SESSION['ccpageRights'] = getPages();
 									$response['ridirect_page'] = $_SESSION['ccpageRights'][0]['link'];
 									echo json_encode($response);
 									return false;

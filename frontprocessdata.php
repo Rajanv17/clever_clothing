@@ -104,7 +104,7 @@ if (isset($_POST['process']) && ($_POST['process'] == 'addCart')) {
 	$insuser = "INSERT INTO `cart`(`cus_id`,`pro_id`, `qty`, `total`, `active`, `deleted`) VALUES (:cus, :pro, :qty, (SELECT `pro_price` FROM `product` WHERE `pro_id` = :total), :active, :deleted)";
 	$insUserData = $pdoDbConnect->prepare($insuser);
 	try {
-		$result = $insUserData->execute(['cus' => $userId , 'pro' => $id , 'qty' => '1' , 'total' => $id , 'active' => $yes, 'deleted' => $no]);
+		$result = $insUserData->execute(['cus' => $cusId , 'pro' => $id , 'qty' => '1' , 'total' => $id , 'active' => $yes, 'deleted' => $no]);
 		if ($result) {
 			$response['code'] = 200;
 			$response['msg'] = 'Product added succesfully';

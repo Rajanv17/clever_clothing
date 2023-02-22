@@ -53,40 +53,11 @@
 					if (datas.code == 200) {
 						$('form.category')[0].reset();
 						$('#viewCategoryData').DataTable().ajax.reload();
-						getCategory();
 						changeclass(1);
 					}
 				}
 			})
 		});
-let getCategory = function(){
-	$('#loading').show();
-	$.ajax({
-		url : "include/fetchData.php",
-		method : "POST",
-		data: {getData : "getCategory"},
-		dataType : "json",
-		success : function(data){
-			$('#loading').hide();
-			if(data.code == 200){
-				setCatgoryData(data);
-			}
-			else{
-				toastDisplay(data);
-			}
-		}
-	});
-}
-function setCatgoryData(data){
-	$('#selCat')
-	.find('option')
-	.remove()
-	.end()
-	.append('<option class="dropdown" value="">Select Category</option>')
-	$.each(data.data, function(index, val) {
-		$('#selCat').append($("<option></option>").attr("value", val.id).text(val.name));
-	});
-}
 $(document).on('click', '.deactive', function(event) {
 	event.preventDefault();
 	/* Act on the event */
@@ -142,12 +113,6 @@ $(document).on('click', '.edit', function(event) {
                 $('#loading').hide();
                 if(data.code == 200){
                     $('#categoryName').val(data.data.name);
-                    $('#listingSeq').val(data.data.seq);
-                    $('#hIcon').val(data.data.icon);
-                    $('#hImg').val(data.data.img);
-                    $('#catMetaTit').val(data.data.title);
-                    $('#catMetaDesc').val(data.data.desc);
-                    $('#hiddenMenu').val("updateCatData");
                     $('#hCatId').val(aId);
                     changeclass(0);
                 }
@@ -163,6 +128,5 @@ $(document).on('click', '.edit', function(event) {
         number == 0 ? $('.submit').text("Update") : $('.submit').text("Submit");
         number == 0 ? $('#process').val("updateCatData") : $('#process').val("addCategoryData");
     }
-getCategory();
 });
 </script>

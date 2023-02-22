@@ -6,7 +6,7 @@ include ('include/head.php');
 <body class="hold-transition login-page loginScreen" style="background: -webkit-linear-gradient(left, #003366,#004080,#0059b3
 , #0073e6); background-repeat: no-repeat;
 background-attachment: fixed;
-background-position: center;   background-repeat: no-repeat; background-size: cover;, auto;">
+background-position: center;   background-repeat: no-repeat; background-size: cover;">
 <div class="login-box">
     <div class="overlay-wrapper">
         <div class="overlay" id="loading">

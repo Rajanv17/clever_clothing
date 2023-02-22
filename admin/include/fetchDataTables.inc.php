@@ -27,7 +27,8 @@ if (isset($_POST['fetchType']) && ($_POST['fetchType']) == "fetch_categories") {
 	{
 		$val = '';
 		if ($status == 'Y') {
-			$val .= '<button class="btn btn-block btn-outline-danger btn-sm deactive" id=' . $btnId . '>Deactive</button>';
+			$val .= '<button class="btn btn-block btn-outline-danger btn-sm deactive" id=' . $btnId . '>Deactive</button>
+			<button class="btn btn-block btn-outline-info btn-sm edit" id=' . $btnId . '>Edit</button>';
 		} else {
 			$val .= '<button class="btn btn-block btn-outline-success btn-sm actived" id=' . $btnId . '>Active</button>';
 		}
@@ -127,7 +128,8 @@ if (isset($_POST['fetchType']) && ($_POST['fetchType']) == "fetch_products") {
 	{
 		$val = '';
 		if ($status == 'Y') {
-			$val .= '<button class="btn btn-block btn-outline-danger btn-sm deactive" id=' . $btnId . '>Deactive</button>';
+			$val .= '<button class="btn btn-block btn-outline-danger btn-sm deactive" id=' . $btnId . '>Deactive</button>
+			<button class="btn btn-block btn-outline- btn-sm edit" id=' . $btnId . '>Edit</button>';
 		} else {
 			$val .= '<button class="btn btn-block btn-outline-success btn-sm actived" id=' . $btnId . '>Active</button>';
 		}
@@ -182,6 +184,7 @@ if (isset($_POST['fetchType']) && ($_POST['fetchType']) == "fetch_products") {
 
 	foreach ($result as $value) {
 		$sub_array = array();
+		$sub_array[] = $value['c_name'];
 		$sub_array[] = $value['pro_name'];
 		$sub_array[] = $value['pro_desc'];
 		$sub_array[] = $value['pro_price'];

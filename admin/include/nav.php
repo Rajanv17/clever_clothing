@@ -14,7 +14,7 @@
         <img src="../img/logo_1.png" class="img-circle elevation-2 proImage" alt="User Image" style="">
       </div>
       <div class="info">
-        <a href="#" class="d-block text-sm"><?php echo $sUser;?><br><?php echo $memberBName;?></a>
+        <a href="#" class="d-block text-sm"><?php echo $sUser;?></a>
       </div>
     </div>
 

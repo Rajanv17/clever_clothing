@@ -10,7 +10,7 @@
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
                         <div class="header__top__links">
-                            <a href="login.php">Sign in</a>
+                            <a href="index.php">Sign Out</a>
                         </div>
                     </div>
                 </div>
@@ -29,10 +29,8 @@
                     <ul>
                         <li class="active"><a href="home.php">Home</a></li>
                         <li><a href="#">Categories</a>
-                            <ul class="dropdown">
-                                <li><a href="shop.php?id=1">Men's collection</a></li>
-                                <li><a href="shop.php?id=2">Women's collection</a></li>
-                                <li><a href="shop.php?id=3">Kid's collection</a></li>
+                            <ul class="dropdown" id="headCats">
+                               <!--  <li><a href="shop.php?id=3">Kid's collection</a></li> -->
                             </ul>
                         </li>
                         <li><a href="./contact.php">Contact Us</a></li>
@@ -51,3 +49,28 @@
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
     </div>
 </header>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script>
+    let getHeadCats = function(start,Limit, cName){
+            $.ajax({
+                url : "fetchFronts.php",
+                method : "POST",
+                data: {getData : "getHeadCats"},
+                dataType : "json",
+                success : function(data){
+                    if (data.code == 200) {
+                        setHeadCats(data.data);
+                    }
+                }
+            });
+        }
+        let setHeadCats = function(data) {
+            $.each(data, function(index, val) {
+                let dyn = '';
+                dyn += '<li><a href="shop.php?id='+val.id+'">'+val.name+'</a></li>';
+                $('#headCats').append(dyn);
+                dyn = '';
+            });
+        }
+        getHeadCats();
+</script>

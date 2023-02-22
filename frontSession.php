@@ -2,12 +2,12 @@
 if (session_status() == PHP_SESSION_NONE){
 	if (session_id() === "") {
 		session_start();
-		$sUser = $userId = $userType = $userImage = $sUserContact = $sMemId = $loginTime = $memberBName = null;
+		$sCus = $cusId = $userType = $userImage = $sUserContact = $sMemId = $loginTime = $memberBName = null;
 
 		if(isset($_SESSION['ccuser']) && !empty($_SESSION['ccuser'])){
-			$sUser = $_SESSION['ccuser'];
-			$userId = $_SESSION['ccuserId'];
-			$sUserContact = $_SESSION['ccuserContact'];
+			$sCus = $_SESSION['ccuser'];
+			$cusId = $_SESSION['ccuserId'];
+			$sCusContact = $_SESSION['ccuserContact'];
 		}
 		if (isset($_SESSION['ccloginTimeStamp'])) {
 			if ((time() - $_SESSION['ccloginTimeStamp'])>900) {

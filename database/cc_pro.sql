@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 18, 2023 at 09:52 PM
+-- Generation Time: Feb 19, 2023 at 04:59 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,9 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`crt_id`, `cus_id`, `pro_id`, `qty`, `total`, `active`, `deleted`, `ordered`) VALUES
 (1, 5, 1, 1, 800, 'Y', 'N', 'Y'),
 (2, 5, 1, 1, 800, 'Y', 'N', 'Y'),
-(3, 5, 1, 1, 800, 'Y', 'N', 'Y');
+(3, 5, 1, 1, 800, 'Y', 'N', 'Y'),
+(4, 5, 1, 1, 800, 'Y', 'N', 'Y'),
+(5, 5, 2, 1, 1000, 'Y', 'N', 'Y');
 
 -- --------------------------------------------------------
 
@@ -68,9 +70,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`c_id`, `c_name`, `u_id`, `active`, `deleted`, `createdDate`, `updatedDate`) VALUES
-(1, 'Man\'s Wear', 1, 'Y', 'N', '2023-02-16 23:00:00', NULL),
-(2, 'Women\'s Wear', 1, 'Y', 'N', '2023-02-16 23:00:08', NULL),
-(3, 'Children\'s Wear', 1, 'Y', 'N', '2023-02-16 23:00:19', '2023-02-17 22:01:16');
+(1, 'Men\'s Collection', 1, 'Y', 'N', '2023-02-16 23:00:00', '2023-02-19 20:14:08'),
+(2, 'Women\'s Collection', 1, 'Y', 'N', '2023-02-16 23:00:08', NULL),
+(3, 'Children\'s Collection', 1, 'Y', 'N', '2023-02-16 23:00:19', '2023-02-17 22:01:16');
 
 -- --------------------------------------------------------
 
@@ -116,13 +118,11 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cus_id`, `cus_name`, `cus_mob`, `cus_email`, `cus_city`, `cus_state`, `cus_password`, `createdDate`, `updateDate`, `active`, `deleted`) VALUES
-(1, 'Kishan Parmar', '2147483647', 'abc@abc.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
-(2, 'Kishan Parmar', '2147483647', 'def@def.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
+(1, 'Rajan Vasani', '2147483647', 'abc@abc.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
+(2, 'Abhishek Bhojak', '2147483647', 'def@def.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
 (3, 'Kishan Parmar', '2147483647', 'eee@fee.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
-(4, 'Kishan Parmar', '4848484848', 'def@def.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
-(5, 'Kishan Parmar', '4848484849', 'abc@abc.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810b83ba76e8b2a6d04387bd004a22eee6977af205684b7cd689a56e948046b334a12412cd036c01f06dab749ad8bfb1776939111fa3797', '2023-02-18', NULL, 'Y', 'N'),
-(6, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-19', NULL, 'Y', 'N'),
-(7, NULL, NULL, NULL, NULL, NULL, NULL, '2023-02-19', NULL, 'Y', 'N');
+(4, 'Hardik', '4848484848', 'def@def.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810', '2023-02-18', NULL, 'Y', 'N'),
+(5, 'ccuser', '9999999999', 'abc@abc.com', 'RAJKOT', 'Gujarat', '2917f83db808485fb810b83ba76e8b2a6d04387bd004a22eee6977af205684b7cd689a56e948046b334a12412cd036c01f06dab749ad8bfb1776939111fa3797', '2023-02-18', NULL, 'Y', 'N');
 
 -- --------------------------------------------------------
 
@@ -197,7 +197,8 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`pro_id`, `c_id`, `pro_name`, `pro_desc`, `pro_img`, `pro_price`, `u_id`, `active`, `deleted`, `createdDate`, `updatedDate`) VALUES
 (1, 2, 'Product A', 'Product Description', 'uploads/product/IMG-Product_A_16767430721399.jpg', '800', 1, 'Y', 'N', '2023-02-18 23:27:52', NULL),
 (2, 1, 'Product B`', 'Product Description', 'uploads/product/IMG-Product_B`_16767436636171.png', '1000', 1, 'Y', 'N', '2023-02-18 23:37:43', NULL),
-(3, 3, 'Product C', 'Product Description', 'uploads/product/IMG-Product_C_16767437222845.png', '1500', 1, 'Y', 'N', '2023-02-18 23:38:42', NULL);
+(3, 3, 'Product C', 'Product Description', 'uploads/product/IMG-Product_C_16767437222845.png', '1500', 1, 'Y', 'N', '2023-02-18 23:38:42', NULL),
+(4, 4, 'Shirt', 'Cotton Shirt', 'uploads/product/IMG-Shirt_16768169794693.jpg', '599', 1, 'Y', 'N', '2023-02-19 19:59:39', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,13 +287,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `crt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `crt_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `ccsaltedpassword`
@@ -322,7 +323,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pro_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`

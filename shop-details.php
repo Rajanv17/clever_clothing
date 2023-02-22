@@ -81,7 +81,7 @@
                             <p class="h3 my-0" id="proPrice"></p>
                             <br>
                             <div class="product__details__cart__option">
-                                <p id="addToCart" class="primary-btn" style="cursor: pointer;">add to cart</p>
+                                <button id="addToCart" class="primary-btn" style="cursor: pointer;">add to cart</button>
                             </div>
                         </div>
                     </div>

@@ -293,11 +293,11 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-        let getProduct = function(start,Limit, cName){
+        let getProduct = function(){
             $.ajax({
                 url : "fetchFronts.php",
                 method : "POST",
-                data: {getData : "getProduct"},
+                data: {getData : "getBestProduct"},
                 dataType : "json",
                 success : function(data){
                     if (data.code == 200) {

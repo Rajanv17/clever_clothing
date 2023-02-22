@@ -270,7 +270,7 @@
       var form_data = new FormData(this);
       $('#loading').show();
       $.ajax({
-        url : "frontprocess.php",
+        url : "frontProcess.php",
         method : "POST",
         data : form_data,
         contentType : false,

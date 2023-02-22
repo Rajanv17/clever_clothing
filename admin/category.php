@@ -54,10 +54,8 @@ include ('include/nav.php');
 											</div>
 											<div class="card-footer bg-light col-md-12 text-center">
 												<input type="hidden" id="process" name="process" value="addCategoryData" />
-												<input type="hidden" id="hIcon" name="hIcon" />
-												<input type="hidden" id="hImg" name="hImg" />
 												<input type="hidden" id="hCatId" name="hCatId" />
-												<input type="submit" class="btn btn-primary" value="Submit">
+												<input type="submit" class="btn btn-primary submit" value="Submit">
 											</div>
 										</div>
 									</form>

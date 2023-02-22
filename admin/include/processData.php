@@ -85,11 +85,12 @@ if (isset($_POST['process']) && ($_POST['process'] == 'addCategoryData' || $_POS
 **
 *
 */
-if (isset($_POST['process']) && ($_POST['process'] == 'addProductData')) {
+if (isset($_POST['process']) && ($_POST['process'] == 'addProductData' || $_POST['process'] == 'updateProductData')) {
 	empty_validation($_POST['selCat'], "Please Select Category") == false ? exit() : $selCat = changeText($_POST['selCat']);
 	empty_validation($_POST['productName'], "Please Enter Product Name") == false ? exit() : $productName = changeText($_POST['productName']);
 	empty_validation($_POST['productDesc'], "Please Enter Product Description") == false ? exit() : $productDesc = changeText($_POST['productDesc']);
 	empty_validation($_POST['productPrice'], "Please Enter Product Price") == false ? exit() : $productPrice = changeText($_POST['productPrice']);
+		if($_POST['process'] == 'addProductData'){
 	$img = null;
 	if (!fileCheck($_FILES['proImg']['error'], $_FILES['proImg']['size'])) {
 		if (!fileUpload($_FILES['proImg']['name'], $_FILES['proImg']['error'], $_FILES['proImg']['size'], $_FILES['proImg']['tmp_name'], "IMG-".$productName, "../uploads/product", 1000000, 1, 'img')) {
@@ -116,6 +117,34 @@ if (isset($_POST['process']) && ($_POST['process'] == 'addProductData')) {
 		try {
 			$insData = $pdoDbConnect->prepare($query2);
 			$insResult = $insData->execute(['cat' => $selCat, 'name' => $productName, 'descr' => $productDesc, 'img' => $img, 'price' => $productPrice, 'uId' => $userId, 'yes' => $yes, 'no' => $no, 'cTime' => $currentTime]);
+			if ($insResult) {
+				$response['code'] = 200;
+				$response['msg'] = "$productName added successfully";
+			}
+		} catch (PDOException $e) {
+			$response['code'] = 100;
+			$response['msg'] = "$query2 => " . $e->getMessage();
+		}
+		$DatabaseFile = null;
+	}
+}
+if($_POST['process'] == 'updateProductData'){
+	empty_validation($_POST['proId'], 'Something went wrong while selecting id') == false ? exit() : $proId = $_POST['proId'];
+	$img = null;
+	if (!fileCheck($_FILES['proImg']['error'], $_FILES['proImg']['size'])) {
+		if (!fileUpload($_FILES['proImg']['name'], $_FILES['proImg']['error'], $_FILES['proImg']['size'], $_FILES['proImg']['tmp_name'], "IMG-".$productName, "../uploads/products", 30000, 1, 'img')) {
+			exit();
+		}else{
+			unset($_POST['hproImg']);
+		}
+	}else{
+		$img = $_POST['hproImg'];
+	}
+	$proceed = false;
+	$query2 = "UPDATE `product` SET `c_id` = :cat, `pro_name` = :name, `pro_desc` = :descr, `pro_img` = :img, `pro_price` = :price, `u_id` = :uId, `active` = :yes, `deleted` = :no, `updatedDate` = :cTime WHERE `pro_id` = :pro_id";
+		try {
+			$insData = $pdoDbConnect->prepare($query2);
+			$insResult = $insData->execute(['cat' => $selCat, 'name' => $productName, 'descr' => $productDesc, 'img' => $img, 'price' => $productPrice, 'uId' => $userId, 'yes' => $yes, 'no' => $no, 'cTime' => $currentTime, 'pro_id' => $proId]);
 			if ($insResult) {
 				$response['code'] = 200;
 				$response['msg'] = "$productName added successfully";

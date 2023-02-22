@@ -4,5 +4,5 @@
     $c = 'holfgQJKWERJKL;ASDFGHKLv;jklBG89023456789234}:{:++i$io*(@#jmn*ddfws*(';
     $b = 123456;
     $salted = $a.$b.$c;
-    echo hash('SHA512', $salted);
+    echo hash('SHA512', $salted); // encryption mode to encode the password
  ?>
